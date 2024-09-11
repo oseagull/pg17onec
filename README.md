@@ -18,7 +18,7 @@ docker volume create pg1c_pg161c_data
   - domainname - доменное имя
   - env=PG_PASSWORD= - пароль по умолчанию для пользователя postgres
 ```shell
-docker run --detach --name=pg161c --hostname=pg161c --domainname=docker.internal --publish 5432:5432 --volume=pg1c_pg161c_data:/var/lib/1c/pgdata --env=PG_PASSWORD=uehBeDIyZraK --restart=always pg161c
+docker run -e LC_ALL=ru_RU.UTF-8 --detach --name=pg161c --hostname=pg161c --publish 5432:5432 --volume=pg1c_pg161c_data:/var/lib/1c/pgdata --env=PG_PASSWORD=uehBeDIyZraK --restart=always pg161c
 ```
 Если контенейр контейнер успешно запущен то на порту 5432 виден postgres
 4. Остановить контейнер c базой данных
