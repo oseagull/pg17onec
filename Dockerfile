@@ -16,6 +16,7 @@ RUN apt update \
     && localedef -f UTF-8 -i ru_RU ru_RU.UTF-8 \
     && locale-gen ru_RU.UTF-8 \
     && update-locale LANG=ru_RU.UTF-8 \
+    && export LC_ALL=ru_RU.UTF-8 \
     && apt-get --yes install tzdata && ln -snf /usr/share/zoneinfo/"$TZ" /etc/localtime && echo "$TZ" > /etc/timezone \
     && apt-get --yes install postgrespro-1c-16 \
     && apt-get --yes install gosu \
