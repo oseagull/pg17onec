@@ -1,0 +1,18 @@
+version: '3.8'
+services:
+
+  postgres1c:
+    # У вас должен быть локально image: pg161c:latest 
+    image: pg161c:latest
+    container_name: pg161c
+    hostname: pg161c
+    domainname: docker.internal
+    ports:
+      - "5432:5432"
+    volumes:
+      - pg161c_data:/var/lib/1c/pgdata
+    environment:
+      - PG_PASSWORD=uehBeDIyZraK
+
+volumes:
+  pg161c_data:
