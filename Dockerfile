@@ -42,4 +42,4 @@ WORKDIR /usr/bin
 ENTRYPOINT ["/entrypoint.sh"]
 CMD ["./postgres"]
 
-HEALTHCHECK --interval=30s --timeout=5s --retries=3 CMD ["/usr/local/bin/check_space.sh"]
+HEALTHCHECK --interval=30s --timeout=5s --retries=3 CMD ["/check_space.sh"]
