@@ -26,11 +26,9 @@ RUN chmod +x /pgpro-repo-add.sh \
     && apt-get --yes install gosu \
     && rm /pgpro-repo-add.sh \
     && rm -rf /var/lib/apt/lists/* /var/cache/apt/archives/* \
-    && chmod +x /entrypoint.sh \
+    && chmod +x ./entrypoint.sh \
     && chmod +x ./postgres \
-    && chmod +x /check_space.sh \
-    && cat /pgdefault.conf >> /var/lib/1c/pgdata/postgresql.conf \
-    && rm /pgdefault.conf
+    && chmod +x ./check_space.sh
 
 EXPOSE 5432
 
