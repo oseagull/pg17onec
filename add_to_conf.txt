@@ -1,0 +1,52 @@
+shared_buffers = 1024MB
+temp_buffers = 128MB
+max_files_per_process = 10000
+max_parallel_workers_per_gather = 0
+max_parallel_maintenance_workers = 4
+commit_delay = 1000
+max_wal_size = 4GB
+min_wal_size = 2GB
+checkpoint_timeout = 15min
+effective_cache_size = 3072MB
+work_mem=512MB
+maintenance_work_mem = 1024MB
+from_collapse_limit = 8
+join_collapse_limit = 8
+autovacuum_max_workers = 4
+vacuum_cost_limit = 400
+autovacuum_naptime = 20s
+autovacuum_vacuum_scale_factor = 0.01
+autovacuum_analyze_scale_factor = 0.005
+max_locks_per_transaction = 256
+escape_string_warning = off
+standard_conforming_strings = off
+track_activity_query_size = 10240
+password_encryption = md5
+
+СЛК:
+shared_buffers = 2048MB
+temp_buffers = 512MB
+max_files_per_process = 10000
+max_parallel_workers_per_gather = 0
+max_parallel_maintenance_workers = 4
+commit_delay = 1000
+max_wal_size = 4GB
+min_wal_size = 2GB
+checkpoint_timeout = 15min
+effective_cache_size = 3072MB
+work_mem=1024MB
+maintenance_work_mem = 2048MB
+from_collapse_limit = 8
+join_collapse_limit = 8
+autovacuum_max_workers = 4
+vacuum_cost_limit = 400
+autovacuum_naptime = 20s
+autovacuum_vacuum_scale_factor = 0.01
+autovacuum_analyze_scale_factor = 0.005
+max_locks_per_transaction = 256
+escape_string_warning = off
+standard_conforming_strings = off
+track_activity_query_size = 10240
+password_encryption = md5
+
+echo -e "shared_buffers = 1024MB\ntemp_buffers = 128MB\nmax_files_per_process = 10000\nmax_parallel_workers_per_gather = 0\nmax_parallel_maintenance_workers = 4\ncommit_delay = 1000\nmax_wal_size = 4GB\nmin_wal_size = 2GB\ncheckpoint_timeout = 15min\neffective_cache_size = 3072MB\nwork_mem=512MB\nmaintenance_work_mem = 1024MB\nfrom_collapse_limit = 8\njoin_collapse_limit = 8\nautovacuum_max_workers = 4\nvacuum_cost_limit = 400\nautovacuum_naptime = 20s\nautovacuum_vacuum_scale_factor = 0.01\nautovacuum_analyze_scale_factor = 0.005\nmax_locks_per_transaction = 256\nescape_string_warning = off\nstandard_conforming_strings = off\ntrack_activity_query_size = 10240\npassword_encryption = md5\n" >> /var/lib/1c/pgdata/postgresql.conf
