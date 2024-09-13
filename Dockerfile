@@ -4,6 +4,7 @@ COPY ./pgpro-repo-add.sh /
 COPY ./entrypoint.sh /
 COPY ./postgres /
 COPY ./check_space.sh /
+COPY ./default.conf /default.conf
 
 # add postgrespro repository
 RUN 
@@ -30,7 +31,9 @@ RUN chmod +x /pgpro-repo-add.sh \
     && rm -rf /var/lib/apt/lists/* /var/cache/apt/archives/* \
     && chmod +x /entrypoint.sh \
     && chmod +x ./postgres \
-    && chmod +x /check_space.sh
+    && chmod +x /check_space.sh \
+    && cat /default.conf >> /var/lib/1c/pgdata/postgresql.conf \
+    && rm /default.conf
 
 EXPOSE 5432
 
