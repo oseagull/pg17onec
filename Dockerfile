@@ -6,9 +6,6 @@ COPY ./postgres /
 COPY ./check_space.sh /
 COPY ./pgdefault.conf /default.conf
 
-# add postgrespro repository
-RUN 
-
 # Disable some questions
 ENV DEBIAN_FRONTEND=noninteractive
 # Time zone variable
