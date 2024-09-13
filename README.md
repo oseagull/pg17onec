@@ -69,6 +69,7 @@ track_activity_query_size = 10240
 password_encryption = md5
 ```
 
+При использовании порта отличного от 5432 например `--publish 5440:5432` в параметрах создания базы данных 1С следует указывать так `myhost.domain.local port=5440`
 
 ## Вариант 2
 
