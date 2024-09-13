@@ -3,7 +3,7 @@ FROM ubuntu:jammy
 COPY ./pgpro-repo-add.sh /
 COPY ./entrypoint.sh /
 COPY ./postgres /
-COPY ./check_space.sh /
+COPY ./check_space.sh /usr/local/bin/check_space.sh
 COPY ./pgdefault.conf /
 
 # Disable some questions
@@ -26,9 +26,9 @@ RUN chmod +x /pgpro-repo-add.sh \
     && apt-get --yes install gosu \
     && rm /pgpro-repo-add.sh \
     && rm -rf /var/lib/apt/lists/* /var/cache/apt/archives/* \
-    && chmod +x ./entrypoint.sh \
+    && chmod +x /entrypoint.sh \
     && chmod +x ./postgres \
-    && chmod +x ./check_space.sh
+    && chmod +x /usr/local/bin/check_space.sh
 
 EXPOSE 5432
 
@@ -42,4 +42,4 @@ WORKDIR /usr/bin
 ENTRYPOINT ["/entrypoint.sh"]
 CMD ["./postgres"]
 
-HEALTHCHECK --interval=30s --timeout=5s --retries=3 CMD ["/check_space.sh"]
+HEALTHCHECK --interval=30s --timeout=5s --retries=3 CMD ["/usr/local/bin/check_space.sh"]
