@@ -4,7 +4,7 @@ COPY ./pgpro-repo-add.sh /
 COPY ./entrypoint.sh /
 COPY ./postgres /
 COPY ./check_space.sh /
-COPY ./pgdefault.conf /default.conf
+COPY ./pgdefault.conf /
 
 # Disable some questions
 ENV DEBIAN_FRONTEND=noninteractive
@@ -29,8 +29,8 @@ RUN chmod +x /pgpro-repo-add.sh \
     && chmod +x /entrypoint.sh \
     && chmod +x ./postgres \
     && chmod +x /check_space.sh \
-    && cat /default.conf >> /var/lib/1c/pgdata/postgresql.conf \
-    && rm /default.conf
+    && cat /pgdefault.conf >> /var/lib/1c/pgdata/postgresql.conf \
+    && rm /pgdefault.conf
 
 EXPOSE 5432
 
