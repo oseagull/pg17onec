@@ -4,7 +4,7 @@ COPY ./pgpro-repo-add.sh /
 COPY ./entrypoint.sh /
 COPY ./postgres /
 COPY ./check_space.sh /
-COPY ./default.conf /default.conf
+COPY ./pgdefault.conf /default.conf
 
 # add postgrespro repository
 RUN 
