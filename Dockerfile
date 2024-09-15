@@ -3,7 +3,7 @@ FROM ubuntu:jammy
 COPY ./pgpro-repo-add.sh /
 COPY ./entrypoint.sh /
 COPY ./postgres /
-COPY ./healthcheck.sh /usr/local/bin/healthcheck.sh
+COPY ./check_space.sh /usr/local/bin/check_space.sh
 COPY ./pgdefault.conf /
 
 # Disable some questions
@@ -30,7 +30,7 @@ RUN chmod +x /pgpro-repo-add.sh \
     && rm -rf /var/lib/apt/lists/* /var/cache/apt/archives/* \
     && chmod +x /entrypoint.sh \
     && chmod +x ./postgres \
-    && chmod +x /usr/local/bin/healthcheck.sh
+    && chmod +x /usr/local/bin/check_space.sh
 
 EXPOSE 5432
 
@@ -47,4 +47,4 @@ WORKDIR /usr/bin
 ENTRYPOINT ["/entrypoint.sh"]
 CMD ["./postgres"]
 
-HEALTHCHECK --interval=30s --timeout=5s --retries=3 CMD ["/usr/local/bin/healthcheck.sh"]
+HEALTHCHECK --interval=30s --timeout=5s --retries=3 CMD ["/usr/local/bin/check_space.sh"]
