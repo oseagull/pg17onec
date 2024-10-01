@@ -28,7 +28,6 @@ if [ "$1" = './postgres' ]; then
     fi
     chown postgres $PGSOCKET
 
-    gosu postgres pgagent -f host=localhost dbname=postgres user=postgres password="$PG_PASSWORD"
     exec gosu postgres ./postgres
     
 fi
