@@ -27,7 +27,11 @@ if [ "$1" = './postgres' ]; then
         mkdir -p $PGSOCKET
     fi
     chown postgres $PGSOCKET
-
+	
+	echo "Statring pgagent..."
+	gosu postgres pgagent host=$PGSOCKET dbname=postgres
+	
+	echo "Statring postgres..."
     exec gosu postgres ./postgres
     
 fi
