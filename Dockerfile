@@ -28,7 +28,6 @@ RUN chmod +x /pgpro-repo-add.sh \
     && rm /pgpro-repo-add.sh \
     && rm -rf /var/lib/apt/lists/* /var/cache/apt/archives/* \
     && chmod +x /entrypoint.sh \
-    && chmod +x ./postgres \
     && chmod +x /usr/local/bin/check_space.sh
 
 EXPOSE 5432
