@@ -3,7 +3,7 @@
 set -e
 
 if [ "$1" = './postgres' ]; then
-    
+
     if [ ! -s "$PGDATA/PG_VERSION" ]; then
         chown -R postgres:postgres "$PGDATA"
 
@@ -13,7 +13,7 @@ if [ "$1" = './postgres' ]; then
         else
             gosu postgres ./initdb
         fi
-        
+
         echo "synchronous_commit = off" >> "$PGDATA/postgresql.conf"
         echo "unix_socket_directories = '/tmp,$PGSOCKET'" >> "$PGDATA/postgresql.conf"
         # listen all network addresses
@@ -28,13 +28,9 @@ if [ "$1" = './postgres' ]; then
     fi
     chown postgres $PGSOCKET
 
-    echo "Statring pgagent..."
-    gosu postgres pgagent host=$PGSOCKET dbname=postgres
-
     echo "Statring postgres..."
-    gosu postgres ./postgres
+    exec gosu postgres ./postgres
 
-    wait    
 fi
 
 exec "$@"
