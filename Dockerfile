@@ -40,7 +40,6 @@ ENV PGSOCKET /tmp/postgresql/socket
 # Postgres password for first run (init)
 ENV PG_PASSWORD="postgres"
 
-
 VOLUME ${PGDATA}
 
 WORKDIR /usr/bin
