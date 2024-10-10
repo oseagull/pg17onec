@@ -7,3 +7,5 @@ do
 done
 
 # Now able to connect to postgres
+
+gosu postgres pgagent host=$PGSOCKET dbname=postgres
