@@ -28,11 +28,11 @@ if [ "$1" = './postgres' ]; then
     fi
     chown postgres $PGSOCKET
 	
-    echo "Statring pgagent..."
-    gosu postgres pgagent host=$PGSOCKET dbname=postgres
-    
     echo "Statring postgres..."
     exec gosu postgres ./postgres
+    
+    echo "Statring pgagent..."
+    gosu postgres pgagent host=$PGSOCKET dbname=postgres
     
 fi
 
