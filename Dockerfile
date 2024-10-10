@@ -2,7 +2,6 @@ FROM ubuntu:jammy
 
 COPY ./pgpro-repo-add.sh /
 COPY ./entrypoint.sh /
-COPY ./postgres /
 COPY ./check_space.sh /usr/local/bin/check_space.sh
 COPY ./pgdefault.conf /
 
@@ -45,6 +44,5 @@ VOLUME ${PGDATA}
 
 WORKDIR /usr/bin
 ENTRYPOINT ["/entrypoint.sh"]
-CMD ["./postgres"]
 
 HEALTHCHECK --interval=30s --timeout=5s --retries=3 CMD ["/usr/local/bin/check_space.sh"]
