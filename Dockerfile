@@ -33,8 +33,8 @@ RUN chmod +x /pgpro-repo-add.sh \
 EXPOSE 5432
 
 # Default postgres data directory
-ENV PGDATA /var/lib/1c/pgdata
-ENV PGSOCKET /tmp/postgresql/socket
+ENV PGDATA=/var/lib/1c/pgdata
+ENV PGSOCKET=/tmp/postgresql/socket
 # Postgres password for first run (init)
 ENV PG_PASSWORD="postgres"
 
