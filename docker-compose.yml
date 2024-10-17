@@ -12,7 +12,9 @@ services:
     volumes:
       - pg161c_data:/var/lib/1c/pgdata
     environment:
-      - PG_PASSWORD=uehBeDIyZraK
+      - DEBIAN_FRONTEND=noninteractive
+      - LC_ALL=ru_RU.UTF-8
+      - TZ=Europe/Moscow
 
 volumes:
   pg161c_data:
