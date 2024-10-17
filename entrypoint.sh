@@ -4,14 +4,19 @@ set -e
 
 terminate_processes() {
 
-    echo "Stopping postgres..."
-    postgres_pid=$(ps -eo pid,cmd | grep '/opt/pgpro/1c-16/bin/postgres' | grep -v grep | awk '{print $1}')
-    kill -SIGTERM "$postgres_pid" &
+    echo "Stoping postgres..."
+    gosu postgres /opt/pgpro/1c-16/bin/pg_ctl -D "$PGDATA" stop
 
-    echo "Stopping pgagent..."
-    kill -SIGTERM "$pgagent_pid"
+    pgagent_pid=$(ps -eo pid,cmd | grep 'pgagent' | grep -v grep | awk '{print $1}')
+    if [ -n "$pgagent_pid" ]; then
+        echo "Stopping pgagent $pgagent_pid ..."
+        kill -SIGTERM "$pgagent_pid"
+        wait "$pgagent_pid"
+        echo "pgagent stopped."
+    else
+        echo "There is no pgagent PID"
+    fi
 
-    wait "$postgres_pid"
     echo "Processes stopped."
     exit 0
 }
@@ -19,7 +24,6 @@ terminate_processes() {
 trap 'terminate_processes' SIGTERM SIGINT
 
 initialize_database() {
-    # Early return if the database is already initialized
     if [ -s "$PGDATA/PG_VERSION" ]; then
         return
     fi
@@ -39,7 +43,6 @@ initialize_database() {
 }
 
 initialize_socket() {
-    # Early return if the socket directory already exists
     if [ -d "$PGSOCKET" ]; then
         chown postgres $PGSOCKET
         return
