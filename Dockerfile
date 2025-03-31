@@ -35,6 +35,7 @@ EXPOSE 5432
 # Default postgres data directory
 ENV PGDATA=/var/lib/1c/pgdata
 ENV PGSOCKET=/tmp/postgresql/socket
+ENV LC_ALL=ru_RU.UTF-8
 
 VOLUME ${PGDATA}
 
