@@ -1,13 +1,13 @@
 #!/bin/sh
-# This script finds out which Postgresql for 1C 16 package repository is
+# This script finds out which Postgresql for 1C 17 package repository is
 # best suited for your linux distribution and adds it to your
 # package manager. If repository is password protected, it would ask
 # for your username and password and record them into package manager
 # configuration.
 
-REPO="http://repo.postgrespro.ru/1c/1c-16"
-PRODUCT_NAME="Postgresql for 1C 16"
-LISTNAME="postgresql-1c-16"
+REPO="http://repo.postgrespro.ru/1c/1c-17"
+PRODUCT_NAME="Postgresql for 1C 17"
+LISTNAME="postgresql-1c-17"
 REPOUSER=
 PASSWORD=
 if [ "$(id -u)" -ne 0 ]; then

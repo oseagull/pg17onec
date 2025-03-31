@@ -21,10 +21,10 @@ RUN chmod +x /pgpro-repo-add.sh \
     && update-locale LANG=ru_RU.UTF-8 \
     && export LC_ALL=ru_RU.UTF-8 \
     && apt-get --yes install tzdata && ln -snf /usr/share/zoneinfo/"$TZ" /etc/localtime && echo "$TZ" > /etc/timezone \
-    && apt-get --yes install postgrespro-1c-16 \
+    && apt-get --yes install postgrespro-1c-17 \
     && apt-get --yes install gosu \
     && apt-get --yes install pgagent \
-    && cp /usr/share/postgresql/14/extension/pgagent* /opt/pgpro/1c-16/share/extension/ \
+    && cp /usr/share/postgresql/14/extension/pgagent* /opt/pgpro/1c-17/share/extension/ \
     && rm /pgpro-repo-add.sh \
     && rm -rf /var/lib/apt/lists/* /var/cache/apt/archives/* \
     && chmod +x /entrypoint.sh \

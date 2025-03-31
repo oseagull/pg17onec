@@ -2,19 +2,18 @@ version: '3.8'
 services:
 
   postgres1c:
-    # У вас должен быть локально image: pg161c:latest 
-    image: pg161c:latest
-    container_name: pg161c
-    hostname: pg161c
+    image: pg171c:latest
+    container_name: pg171c
+    hostname: pg171c
     domainname: docker.internal
     ports:
       - "5432:5432"
     volumes:
-      - pg161c_data:/var/lib/1c/pgdata
+      - pg171c_data:/var/lib/1c/pgdata
     environment:
       - DEBIAN_FRONTEND=noninteractive
       - LC_ALL=ru_RU.UTF-8
       - TZ=Europe/Moscow
 
 volumes:
-  pg161c_data:
+  pg171c_data:

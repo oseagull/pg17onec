@@ -5,7 +5,7 @@ set -e
 terminate_processes() {
 
     echo "Stoping postgres..."
-    gosu postgres /opt/pgpro/1c-16/bin/pg_ctl -D "$PGDATA" stop
+    gosu postgres /opt/pgpro/1c-17/bin/pg_ctl -D "$PGDATA" stop
 
     pgagent_pid=$(ps -eo pid,cmd | grep 'pgagent' | grep -v grep | awk '{print $1}')
     if [ -n "$pgagent_pid" ]; then

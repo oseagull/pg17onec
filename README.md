@@ -1,6 +1,6 @@
 # Развёртывание постгрес
 
-В этом конфиге посгрес-про 16 для 1с и pgagent - для управления обслуживанием через PgAdmin,
+В этом конфиге посгрес-про 17 для 1с и pgagent - для управления обслуживанием через PgAdmin,
  проверка здоровья: только свободного места в два раза больше чем размер базы данных.
  При создании конфиг посгреса дополняется pgdefault.conf: ожидается 6+Гб RAM, 4 ядра CPU, SSD
 
@@ -10,11 +10,11 @@ apt-get update && apt-get --yes install docker
 ```
 2. Склонировать репозиторий себе
 ```shell
-git clone https://github.com/ilya2184/pg16onec.git
+git clone https://github.com/ilya2184/pg17onec.git
 ```
-3. Перейти в каталог куда склонирован файл описания образа Dockerfile и построить докер-образ. здесь образ назван pg161c
+3. Перейти в каталог куда склонирован файл описания образа Dockerfile и построить докер-образ. здесь образ назван pg171c
 ```shell
-docker build --tag pg161c .
+docker build --tag pg171c .
 ```
 4. Создать и запустить контейнер с базой данных
   - env - определяет переменные среды: LC_ALL - кодировка, PG_PASSWORD - первый пароль (потом поменять)
@@ -22,19 +22,19 @@ docker build --tag pg161c .
   - name - имя контейнера - экземпляра посгреса
   - hostname - не внутреннее докер имя хоста (может потребоваться для связи между контейнерами)
   - publish 5440 - какой порт будет снаружи (относительно внутренностей докера)
-  - volume /mnt/sdb1/dv/pg16data - тут будут лежать данные погреса на хосте
+  - volume /mnt/sdb1/dv/pg17data - тут будут лежать данные погреса на хосте
   - restart=always всегда перезапускать если упало
   - последнее - имя образа из п.3
 ```shell
-docker run --env LC_ALL=ru_RU.UTF-8 --env PG_PASSWORD=uehBeDIyZraK --detach --name=pg161c01 --hostname=pg161c --publish 5440:5432 --volume=/mnt/sdb1/dv/pg16data:/var/lib/1c/pgdata --restart=always pg161c
+docker run --env LC_ALL=ru_RU.UTF-8 --env PG_PASSWORD=uehBeDIyZraK --detach --name=pg171c01 --hostname=pg171c --publish 5440:5432 --volume=/mnt/sdb1/dv/pg17data:/var/lib/1c/pgdata --restart=always pg171c
 ```
 4. Остановить контейнер
 ```shell
-docker stop pg161c01
+docker stop pg171c01
 ```
 5. Снова запустить уже существующий контейнер
 ```shell
-docker start pg161c01
+docker start pg171c01
 ```
 
 При использовании порта снаружи отличного от 5432 например `--publish 5440:5432` в параметрах создания базы данных 1С следует указывать так `myhost.domain.local port=5440`
