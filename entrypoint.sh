@@ -28,16 +28,15 @@ initialize_database() {
         return
     fi
     chown -R postgres:postgres "$PGDATA"
-    # Создаём временный конфиг с нужным параметром
-    echo "password_encryption = md5" > /tmp/initdb.conf
+    # Initialize database cluster without config file parameter
     if [ -n "$PG_PASSWORD" ]; then
         gosu postgres sh -c 'echo "$PG_PASSWORD" > /tmp/password_file'
-        # Передаём временный конфиг через -c config_file
-        gosu postgres ./initdb --pwfile=/tmp/password_file -c config_file=/tmp/initdb.conf
+        gosu postgres ./initdb --pwfile=/tmp/password_file
     else
-        gosu postgres ./initdb -c config_file=/tmp/initdb.conf
+        gosu postgres ./initdb
     fi
-    rm /tmp/initdb.conf
+    # Configure PostgreSQL after initialization
+    echo "password_encryption = md5" >> "$PGDATA/postgresql.conf"
     echo "synchronous_commit = off" >> "$PGDATA/postgresql.conf"
     echo "unix_socket_directories = '/tmp,$PGSOCKET'" >> "$PGDATA/postgresql.conf"
     echo "listen_addresses = '*'" >> "$PGDATA/postgresql.conf"
